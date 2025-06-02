@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Página con imágenes, subtítulos y texto en Times New Roman</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+            font-family: "Times New Roman", Times, serif;
+            background-color: #f0f0f0;
+            text-align: center; /* Centra texto principal */
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto; /* Centra horizontalmente */
+            text-align: left; /* Texto alineado a la izquierda dentro del contenedor */
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            margin: 10px 0;
+            border-radius: 8px;
+            box-shadow: 0 0 8px rgba(0,0,0,0.15);
+            display: block;
+            margin-left: auto;
+            margin-right: auto; /* Centra imagen horizontalmente */
+        }
+        h1 {
+            margin: 10px 0;
+            font-weight: bold;
+            text-align: center;
+        }
+        h2 {
+            margin: 6px 0 12px 0;
+            font-weight: normal;
+            font-style: italic;
+            color: #555;
+            text-align: center;
+        }
+        p {
+            margin: 10px 0;
+        }
+        ul {
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sistema de control de aeronaves mediante cables</h1>
+        <h2>INTRODUCTION</h2>
+        <p>Para lograr un vuelo seguro y eficiente es fundamental contar con un sistema adecuado para controlar la aeronave, en este caso el ATR 72-600. Esto se consigue mediante los sistemas de control de vuelo, los cuales están conformados por un conjunto de superficies que trabajan juntas para dirigir y estabilizar la aeronave. Estas se dividen en tres grupos: superficies primarias (alerones, elevadores y timón), superficies secundarias (aletas de compensación) y superficies de alta sustentación (flaps y slats).</p>
+
+        <p>Existen diversas maneras de construir un sistema para este propósito; la más común en aeronaves antiguas y de pequeño tamaño es el sistema de cables y poleas, debido a la simplicidad de fabricación, bajo peso en comparación con un sistema hidráulico y su funcionamiento independiente de computadoras de vuelo, convirtiéndolo en una opción ideal de un sistema óptimo para aeronaves ligeras con bajos costos operativos.</p>
+
+        <p>El sistema de control de vuelo utiliza cables que se conectan mecánicamente a las superficies de control, se dirigen directamente a la cabina y dependen de la fuerza que ejerce el piloto sobre los mandos para mover dichas superficies de control.</p>
+
+        <p>El objetivo principal de este proyecto es realizar un sistema de control de vuelo basado en cables y poleas, empleando servomotores SG90 que simularán la acción del piloto desde la cabina, mediante un control remoto Rc, modelo FS-i6X con receptor FS-iA10B de 10 canales que opera a una frecuencia de 2,4 Ghz; el transmisor enviara señales al receptor, el cual se encargará de activar los servomotores conectados a las superficies de control mediante cables y esto se moverán gracias al control Rc, teniendo una buena representación de cómo se montaría un sistema de este tipo en la vida real, por otro lado, también se puede decir que este es un híbrido entre un sistema con actuadores mecánicos y un sistema con cables, en donde hay una central en donde se encuentran los servos y estos mueven a las superficies de control por medio de los cables.</p>
+
+        <p>Como objetivo secundario del proyecto se diseñara e implementara un sistema de luces aeronáuticas compuesto por las luces de navegación, beacon y estroboscópicas conectadas a una protoboard de 85mmx55mm que contiene pines energizados, resistencias de 330 Ohms, cables UTP, potenciómetro 100K Ohm, NE555, capacitor de 10 microF, 8 luces led: 3 rojas, 1 verde y 4 blancas; que simulan el comportamiento real de este sistema en una aeronave enfatizando aspectos críticos como la visibilidad, prevenciones y cumplimiento de las normativas aeronáuticas.</p>
+
+        
+        <h2>Marco Teorico</h2>
+
+        <p>En esta sección se abordará la importancia de los sistemas de control de vuelo y los sistemas de luces aeronáuticos, con el propósito de contextualizar el desarrollo del modelo funcional basado en el ATR 72-600. Esta aeronave es un avión comercial bimotor turbohélice diseñado para viajes regionales y trayectos de corta duración. Fabricado por Airbus de Francia y Aeritalia de Italia, se dio a conocer el primer ATR 72 en 1985 y realizó su primer vuelo el 27 de octubre de 1988, posteriormente el 2 de octubre de 2006, el CEO de ATR anunció el lanzamiento de la nueva aeronave serie 600 incorporando los últimos avances tecnológicos, mayor eficiencia operativa y fiabilidad considerado uno de los aviones regionales más modernos en el mundo de la aviación.</p>
+ <img src="ATR.png" alt="Imagen 1" />
+        <p><strong>Sistema de control de vuelo</strong><br>
+        Es parte esencial de cualquier aeronave y está diseñado para dirigir y gestionar su comportamiento durante el despegue, el vuelo y el aterrizaje. Su función principal es asegurar la estabilidad, la maniobrabilidad y la seguridad evitando situaciones de pérdida o salida de control. Este sistema está compuesto por varios elementos fundamentales, entre ellos: la computadora de control de vuelo, las superficies de control, los sensores y los actuadores.</p>
+
+        <p><strong>Computadora de control de vuelo</strong><br>
+        Este componente utiliza los datos recopilados por los sensores para determinar los comandos necesarios que permitan controlar los enlaces mecánicos por señales electrónicas siendo más precisos y mantener la estabilidad de la aeronave. En los sistemas modernos como el fly-by-wire, la computadora también reemplaza los enlaces mecánicos.</p>
+
+        <p><strong>Superficies de control</strong><br>
+        Son mecanismos móviles ubicados en los extremos de las alas y en el estabilizador horizontal y vertical. Los comandos generados por la computadora de control de vuelo se transmiten a estas superficies permitiendo así el control de los tres ejes de la aeronave: eje longitudinal (alerones), eje lateral (elevadores) y eje vertical (timón de dirección).</p>
+
+        <p><strong>Sensores y actuadores</strong><br>
+        Estos componentes se encuentran distribuidos principalmente en el Air Data System (ADS), el cual está conformado por tomas de presión estática y tomas de presión total, conocidas como tubo pitot, ubicadas a ambos lados del fuselaje, cerca de la nariz del avión. Estas miden la presión atmosférica para calcular la altitud barométrica y la velocidad indicada. El sistema también incluye sensores de temperatura total (TAT) que permiten determinar la velocidad verdadera (TAS) considerando la temperatura y densidad del aire. Todos estos datos son procesados por el Air Data Inertial Reference System (ADIRS) que integra la información del ADS y de los sensores inerciales para ofrecer parámetros precisos a la computadora de control de vuelo.</p>
+
+        <p><strong>Sistemas de luces aeronáuticas</strong><br>
+        Este sistema proporciona iluminación para el exterior e interior de la aeronave. En esta sección se abordarán únicamente las luces exteriores, las cuales son fundamentales para operaciones como el aterrizaje nocturno, rodaje en tierra y la prevención de colisiones en el aire. Este sistema contiene luces de navegación (posición), las luces beacon (anticolisión roja) y las luces estroboscópicas (anticolisión blanca).</p>
+
+        <p><strong>(1) Luces de navegación (posición)</strong><br>
+        Estas luces indican la orientación y dirección de la aeronave. Son esenciales para que otras aeronaves puedan identificar su ubicación y sentido de desplazamiento, a su vez alertando a otras aeronaves cumpliendo con los requisitos mínimos de las regulaciones internacionales de aviación.<br>
+        Se ubican de la siguiente manera:<br>
+        Luz roja: En el extremo del ala izquierda<br>
+        Luz verde: En el extremo del ala derecha<br>
+        Luz blanca: En el cono de la cola</p>
+
+        <p><strong>(2) Luces beacon (Anticolisión roja)</strong><br>
+            Son luces de color rojo intermitente que se activan para evitar colisiones y alertar la tripulacion y al personal de tierra de que la aeronave esta activa o en movimiento. Están ubicadas en la parte superior e inferior de la aeronave deben permanecer encendidas desde el momento en que se activan los sistemas eléctricos o motores hasta su apagado total.<br>
+
+            <p><strong>(3) Luces estroboscópicas (Anticolisión blanca)</strong><br>
+Son luces blancas que emiten destellos intermitentes de alta intensidad para aumentar la visibilidad de una aeronave en caso de neblina, sirve para disuadir aves en la trayectoria de vuelo evitando incidentes con fauna, se encuentran en los extremos de las alas y en la cola de la aeronave.<br>
+
+
+<h2>Procedimiento</h2>
+<p>Para el desarrollo del sistema de control de vuelo por cable y el sistema de iluminación se elaboró una estructura a escala del ATR 72-600 con dimensiones de … Se utilizaron materiales ligeros como plástico de botella, periódico, porcelanicrón, cartón, bajalenguas, palos de pincho y componentes mecatrónicos para garantizar la facilidad del montaje.</p>
+
+<p>Se conectaron tres servomotores al receptor del control inalámbrico realizando pruebas funcionales del movimiento de cada superficie. Para el sistema de iluminación se elaboró un diagrama considerando la ubicación y función de cada tipo de luz.</p>
+<h2>Etapas del proyecto</h2>
+
+<ul>
+  <li>Construcción del modelo a escala</li>
+  <li>Identificación de las superficies de control</li>
+</ul>
+
+<p><span class="fig-caption">Fig. 1. Top view of the control system</span></p>
+
+<p>Como se puede ver en la figura 1, el sistema está compuesto por 3 servos, cada uno unido a una superficie que controla uno de los ejes de giro de la aeronave (alabeo, cabeceo y guiñada). Para facilitar la explicación del sistema, se dividirá en tres subsistemas, como se muestra en la figura 1.</p>
+
+<p>El servo de alabeo está conectado a dos superficies de control (ambos alerones), se montaron de esa manera para que la sincronización del movimiento de ambos sea lo más sencilla posible y solo se requiere un servo para mover ambos alerones.</p>
+
+<p>El servo de cabeceo está conectado a un eje en el que están montados ambos elevadores, funcionando como una sola superficie, lo que facilita mucho que ambos tengan el mismo ángulo de deflexión al mismo tiempo.</p>
+
+<p>El timón de cola se controla mediante el servo de guiñada, que consta de dos cables que se conectan a cada lado del timón, de modo que cuando se requiere un movimiento de guiñada hacia la derecha, se "tira" del cable derecho para que el timón se mueva hacia la derecha, como se muestra en la figura 2.</p>
+
+<p><span class="fig-caption">Fig. 2. Yaw servo and rudder working</span></p>
+
+<p>Dado que el sistema está montado en el modelo de un ATR-72 y este avión tiene cola en T, se requiere un montaje como el que se muestra en la figura 3.</p>
+
+<p>Las dos poleas o rodamientos son necesarios para transmitir el movimiento de forma óptima y minimizar la pérdida de fuerza transmitida, para que el sistema sea lo más eficiente posible y no sea necesario forzar el servo, lo que generaría un mayor desgaste.</p>
+
+<p><span class="fig-caption">Fig. 3. Mounting the elevator cables</span></p>
+
+<p>En el caso de los alerones, se requiere tirar del cable por encima de uno de estos mientras que por el otro lado se tira del cable por debajo, esto se logra gracias al montaje mostrado en la figura 4, induciendo un alabeo hacia la izquierda.</p>
+
+<p>Este movimiento deja el sistema en un estado como el mostrado anteriormente, lo que provoca que el alerón izquierdo suba reduciendo la sustentación en esa ala, mientras que el alerón derecho baja aumentando la sustentación en el ala derecha y generando así el alabeo.</p>
+
+<p><span class="fig-caption">Fig. 4. Mounting the roll servo</span></p>
+
+<p><span class="fig-caption">Fig. 5. Left aileron while rolling to the left</span></p>
+
+<h2>Diseño del circuito eléctrico</h2>
+
+<p>(Aquí se puede incluir el detalle del diseño del circuito eléctrico.)</p>
+
+<h2>Pruebas de funcionamiento</h2>
+
+<p>(Aquí se pueden detallar las pruebas realizadas al sistema y sus resultados.)</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
