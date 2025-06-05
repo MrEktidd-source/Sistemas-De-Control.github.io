@@ -121,3 +121,68 @@
 		margin-left : 20px;
 		margin-top : 7px;
 	}
+
+	.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 250px;
+  background-color: #f2f2f2;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+  padding-top: 20px;
+  transition: transform 0.3s ease;
+  transform: translateX(-250px); /* Oculta por defecto */
+  z-index: 1000;
+}
+
+.sidebar.show {
+  transform: translateX(0); /* Muestra la barra */
+}
+
+.sidebar .toggle-btn {
+  position: absolute;
+  top: 10px;
+  right: -40px;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  background-color: #004080;
+  color: white;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+}
+
+.sidebar-content {
+  padding: 20px;
+  font-family: "Times New Roman", Times, serif;
+}
+
+.sidebar-content h2 {
+  font-size: 18px;
+  color: #004080;
+}
+
+.sidebar-content ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.sidebar-content li {
+  margin: 10px 0;
+}
+
+.sidebar-content a {
+  color: #004080;
+  text-decoration: none;
+}
+
+.sidebar-content a:hover {
+  text-decoration: underline;
+}
+
+/* Para dejar espacio en el contenido */
+.container {
+  margin-left: 270px;
+}
